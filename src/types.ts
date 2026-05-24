@@ -4,6 +4,8 @@ export interface Product {
   price: number;
   image: string;
   amount: number;
+  size?: string;
+  category?: string;
 }
 
 export interface Stock {

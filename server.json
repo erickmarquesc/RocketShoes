@@ -1,66 +1,78 @@
 {
   "stock": [
-    {
-      "id": 1,
-      "amount": 3
-    },
-    {
-      "id": 2,
-      "amount": 5
-    },
-    {
-      "id": 3,
-      "amount": 2
-    },
-    {
-      "id": 4,
-      "amount": 1
-    },
-    {
-      "id": 5,
-      "amount": 5
-    },
-    {
-      "id": 6,
-      "amount": 10
-    }
+    { "id": 1, "amount": 3 },
+    { "id": 2, "amount": 5 },
+    { "id": 3, "amount": 2 },
+    { "id": 7, "amount": 8 },
+    { "id": 8, "amount": 6 },
+    { "id": 9, "amount": 4 },
+    { "id": 10, "amount": 12 },
+    { "id": 11, "amount": 5 }
   ],
   "products": [
     {
       "id": 1,
       "title": "Tênis de Caminhada Leve Confortável",
       "price": 179.9,
-      "image": "https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis1.jpg"
+      "image": "https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis1.jpg",
+      "description": "Tênis leve e confortável, ideal para longas caminhadas. Solado antiderrapante e cabedal respirável.",
+      "category": "tenis"
+    },
+    {
+      "id": 7,
+      "title": "Moletom IA para Devs",
+      "price": 149.9,
+      "image": "http://localhost:5173/products/moletom-ia-p-devs.svg",
+      "description": "Moletom fabricado com 88% de algodão e 12% de poliéster. Para devs que respiram inteligência artificial.",
+      "category": "moletom"
     },
     {
       "id": 2,
-      "title": "Tênis VR Caminhada Confortável Detalhes Couro Masculino",
+      "title": "Tênis VR Couro Masculino",
       "price": 139.9,
-      "image": "https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis2.jpg"
+      "image": "https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis2.jpg",
+      "description": "Tênis masculino com detalhes em couro sintético. Design moderno e palmilha anatômica para máximo conforto.",
+      "category": "tenis"
+    },
+    {
+      "id": 11,
+      "title": "Moletom Never Stop Learning",
+      "price": 159.9,
+      "image": "http://localhost:5173/products/moletom-never-stop-learning%201.svg",
+      "description": "Moletom fabricado com 88% de algodão e 12% de poliéster. Lembre-se: nunca pare de aprender.",
+      "category": "moletom"
     },
     {
       "id": 3,
       "title": "Tênis Adidas Duramo Lite 2.0",
       "price": 219.9,
-      "image": "https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis3.jpg"
+      "image": "https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis3.jpg",
+      "description": "Tênis Adidas com tecnologia Cloudfoam para amortecimento superior. Perfeito para corridas e treinos diários.",
+      "category": "tenis"
     },
     {
-      "id": 5,
-      "title": "Tênis VR Caminhada Confortável Detalhes Couro Masculino",
+      "id": 8,
+      "title": "Moletom AI Side",
+      "price": 149.9,
+      "image": "http://localhost:5173/products/moletom-ai-side.svg",
+      "description": "Moletom fabricado com 88% de algodão e 12% de poliéster. Mostre que você está do lado certo da IA.",
+      "category": "moletom"
+    },
+    {
+      "id": 9,
+      "title": "Moletom Java",
       "price": 139.9,
-      "image": "https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis2.jpg"
+      "image": "http://localhost:5173/products/moletom-java.svg",
+      "description": "Moletom fabricado com 88% de algodão e 12% de poliéster. Para os fiéis da JVM que não abrem mão do café.",
+      "category": "moletom"
     },
     {
-      "id": 6,
-      "title": "Tênis Adidas Duramo Lite 2.0",
-      "price": 219.9,
-      "image": "https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis3.jpg"
-    },
-    {
-      "id": 4,
-      "title": "Tênis de Caminhada Leve Confortável",
-      "price": 179.9,
-      "image": "https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis1.jpg"
+      "id": 10,
+      "title": "Camiseta Do While 2022",
+      "price": 89.9,
+      "image": "http://localhost:5173/products/camiseta-dowhile-2022.svg",
+      "description": "Camiseta comemorativa do evento Do While 2022 da Rocketseat. 100% algodão, corte regular.",
+      "category": "moletom"
     }
   ]
 }

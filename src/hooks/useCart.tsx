@@ -12,14 +12,18 @@ interface UpdateProductAmount {
 }
 interface CartContextData {
   cart: Product[];
-  addProduct: (productId: number) => Promise<void>;
+  stockMap: Record<number, number>;
+  addProduct: (productId: number, size?: string) => Promise<void>;
   removeProduct: (productId: number) => void;
   updateProductAmount: ({ productId, amount }: UpdateProductAmount) => void;
+  clearCart: () => void;
 }
 
 const CartContext = createContext<CartContextData>({} as CartContextData);
 
 export function CartProvider({ children }: CartProviderProps): JSX.Element {
+  const [stockMap, setStockMap] = useState<Record<number, number>>({});
+
   const [cart, setCart] = useState<Product[]>(() => {
     const storagedCart = localStorage.getItem('@RocketShoes:cart');
 
@@ -44,7 +48,16 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
     }
   }, [cart, cartPreviousValue]);
 
-  const addProduct = async (productId: number) => {
+  useEffect(() => {
+    if (cart.length === 0) return;
+    Promise.all(cart.map(p => api.get(`/stock/${p.id}`))).then(responses => {
+      const map: Record<number, number> = {};
+      responses.forEach((r, i) => { map[cart[i].id] = r.data.amount; });
+      setStockMap(map);
+    }).catch(() => {});
+  }, [cart]);
+
+  const addProduct = async (productId: number, size?: string) => {
     try {
       const updatedCart = [...cart];
       const productExists = updatedCart.find(product => product.id === productId);
@@ -55,21 +68,26 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
       const correntAmount = productExists ? productExists.amount : 0;
       const amount = correntAmount + 1;
 
-      //Verifica se tem no estoque
       if (amount > stockAmount) {
         toast.error(`Quantidade solicitada fora de estoque`);
         return;
       }
 
-      //Quando o produto existir
       if (productExists) {
         productExists.amount = amount;
       } else {
         const product = await api.get(`/products/${productId}`);
+        const hasDiscount = localStorage.getItem('@RocketShoes:hasDiscount') === 'true';
+        const hasDiscountMoletom = localStorage.getItem('@RocketShoes:hasDiscountMoletom') === 'true';
+        const isMoletom = product.data.category === 'moletom';
+        const discountFactor = hasDiscount ? 0.9
+          : (hasDiscountMoletom && isMoletom ? 0.95 : 1);
         const newProduct = {
           ...product.data,
-          amount: 1
-        }
+          price: product.data.price * discountFactor,
+          amount: 1,
+          ...(size && { size }),
+        };
         updatedCart.push(newProduct);
       }
 
@@ -126,9 +144,11 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
     }
   };
 
+  const clearCart = () => setCart([]);
+
   return (
     <CartContext.Provider
-      value={{ cart, addProduct, removeProduct, updateProductAmount }}
+      value={{ cart, stockMap, addProduct, removeProduct, updateProductAmount, clearCart }}
     >
       {children}
     </CartContext.Provider>
